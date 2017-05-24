@@ -1,0 +1,11 @@
+<h1><%= @recipe.title %></h1>
+<p><%= @recipe.components %></p>
+<p><%= @recipe.body %></p>
+<%= render partial: 'comments/form' %>
+<%= link_to "<< Back to Recipes List", recipes_path %>
+<%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Really want to delete?"} %>
+<%= link_to "Edit", edit_recipe_path(@recipe) %>
+
+
+<h3> Comments <%= @recipe.comments.size %></h3>
+<%= render partial: 'recipes/comment', collection: @recipe.comments %>
