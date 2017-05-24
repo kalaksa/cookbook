@@ -32,6 +32,4 @@ class RecipesController < ApplicationController
     flash.notice = "Recipe '#{@recipe.title}' Updated!"
     redirect_to recipe_path(@recipe)
   end
-
-
 end

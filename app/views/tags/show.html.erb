@@ -1,0 +1,7 @@
+<h1>Recipes Tagged with <%= @tag.name %></h1>
+
+<ul>
+  <% @tag.recipes.each do |recipe| %>
+    <li><%= link_to recipe.title, recipe_path(recipe) %></li>
+  <% end %>
+</ul>
