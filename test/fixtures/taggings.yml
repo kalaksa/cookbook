@@ -2,8 +2,8 @@
 
 one:
   tag: one
-  article: one
+  recipe: one
 
 two:
   tag: two
-  article: two
+  recipe: two
