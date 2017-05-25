@@ -7,7 +7,7 @@
 </p>
 
 <p><%= @recipe.components %></p>
-<p><%= image_tag @recipe.image.url %></p>
+<p><%= image_tag @recipe.image.url(:medium) %></p>
 <p><%= @recipe.body %></p>
 <%= render partial: 'comments/form' %>
 <%= link_to "<< Back to Recipes List", recipes_path %>
