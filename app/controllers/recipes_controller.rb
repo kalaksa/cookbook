@@ -9,10 +9,10 @@ class RecipesController < ApplicationController
     @comment.recipe_id = @recipe.id
   end
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.build
   end
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipes.build(recipe_params)
     @recipe.save
     flash.notice = "Recipe '#{@recipe.title}' Created!"
     redirect_to recipe_path(@recipe)
