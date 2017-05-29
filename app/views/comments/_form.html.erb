@@ -1,8 +1,10 @@
 <h3>Post a Comment</h3>
 <%= form_for [ @recipe, @comment] do |f| %>
 <p>
- <%= f.label :author_name, "Your Name" %> <br />
- <%= f.text_field :author_name %>
+  <% if !user_signed_in? %>
+    <%= f.label :author_name, "Your Name" %> <br />
+    <%= f.text_field :author_name %>
+  <% end %>
 </p>
 <p>
  <%= f.label :body, "Your Comment" %> <br />
