@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   include RecipesHelper
+
   def index
     @recipes = Recipe.all
   end
@@ -32,4 +33,10 @@ class RecipesController < ApplicationController
     flash.notice = "Recipe '#{@recipe.title}' Updated!"
     redirect_to recipe_path(@recipe)
   end
+
+  def get_user_email(id)
+    user = User.find_by(id: id)
+    user.email
+  end
+  helper_method :get_user_email
 end
