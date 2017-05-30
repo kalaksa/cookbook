@@ -1,12 +1,12 @@
 <div>
-  <h4>
+  <h5>
     Comment by
     <% if comment.user_id.nil? %>
       <%= comment.author_name %>
     <% else %>
       <%= get_user_email(comment.user_id) %>
     <% end %>
-  </h4>
+  </h5>
   <p> Posted <%= distance_of_time_in_words(comment.recipe.created_at, comment.created_at) %> later </p>
   <p class="comment"> <%= comment.body %> </p>
   <br>

@@ -9,11 +9,16 @@
 <p><%= @recipe.components %></p>
 <p><%= image_tag @recipe.image.url(:medium) %></p>
 <p><%= @recipe.body %></p>
-<%= render partial: 'comments/form' %>
+<p>Recipe by:
+  <%= get_user_email(@recipe.user_id) %>
+</p>
+
 <%= link_to "<< Back to Recipes List", recipes_path %>
-<%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Really want to delete?"} %>
-<%= link_to "Edit", edit_recipe_path(@recipe) %>
+<% if user_signed_in? %>
+  <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Really want to delete?"} %>
+  <%= link_to "Edit", edit_recipe_path(@recipe) %>
+<% end %>
 
-
+<%= render partial: 'comments/form' %>
 <h3> Comments <%= @recipe.comments.size %></h3>
 <%= render partial: 'recipes/comment', collection: @recipe.comments %>

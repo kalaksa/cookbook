@@ -1,5 +1,6 @@
 class RecipesController < ApplicationController
   include RecipesHelper
+  before_action :authenticate_user!, only: [:new, :create, :destroy, :update, :edit]
 
   def index
     @recipes = Recipe.all
