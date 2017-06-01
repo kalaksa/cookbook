@@ -35,9 +35,9 @@ class RecipesController < ApplicationController
     redirect_to recipe_path(@recipe)
   end
 
-  def get_user_email(id)
-    user = User.find_by(id: id)
-    user.id
-  end
-  helper_method :get_user_email
+  # def get_user_id(id)
+  #   user = User.find_by(id: id)
+  #   user.id
+  # end
+  # helper_method :get_user_id
 end
