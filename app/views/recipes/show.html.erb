@@ -14,8 +14,10 @@
 </p>
 
 <%= link_to "<< Back to Recipes List", recipes_path %>
-<% if user_signed_in? %>
+<% if can? :destroy, @recipe %>
   <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Really want to delete?"} %>
+<% end %>
+<% if can? :update, @recipe %>
   <%= link_to "Edit", edit_recipe_path(@recipe) %>
 <% end %>
 

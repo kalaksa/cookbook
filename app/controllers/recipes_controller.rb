@@ -12,6 +12,7 @@ class RecipesController < ApplicationController
   end
   def new
     @recipe = current_user.recipes.build
+    authorize! :create, @recipe
   end
   def create
     @recipe = current_user.recipes.build(recipe_params)
@@ -21,12 +22,14 @@ class RecipesController < ApplicationController
   end
   def destroy
     @recipe = Recipe.find(params[:id])
+    authorize! :destroy, @recipe
     @recipe = Recipe.destroy(@recipe)
     flash.notice = "Recipe '#{@recipe.title}' Destroyed!"
     redirect_to recipes_path
   end
   def edit
     @recipe = Recipe.find(params[:id])
+    authorize! :update, @recipe
   end
   def update
     @recipe = Recipe.find(params[:id])

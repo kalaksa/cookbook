@@ -11,7 +11,7 @@
   <p> Posted <%= distance_of_time_in_words(comment.recipe.created_at, comment.created_at) %> later </p>
   <p class="comment"> <%= comment.body %> </p>
   <br>
-  <% if user_signed_in? && current_user.id = comment.user_id %>
+  <% if can? :destroy, comment %>
     <%= link_to "Delete", recipe_comment_path(comment.recipe, comment), method: :delete, data: {confirm: "Really want to delete?"} %>
   <% end %>
 

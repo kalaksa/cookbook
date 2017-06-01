@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
+    authorize! :destroy, @comment
     @comment = Comment.destroy(@comment)
     flash.notice = "Comment Destroyed!"
     redirect_to recipe_path(@comment.recipe)
