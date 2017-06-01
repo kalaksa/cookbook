@@ -10,7 +10,7 @@
 <p><%= image_tag @recipe.image.url(:medium) %></p>
 <p><%= @recipe.body %></p>
 <p>Recipe by:
-  <%= get_user_email(@recipe.user_id) %>
+  <%= link_to @recipe.user.username, user_path(get_user_email(@recipe.user_id)) %>
 </p>
 
 <%= link_to "<< Back to Recipes List", recipes_path %>

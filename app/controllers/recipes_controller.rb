@@ -37,7 +37,7 @@ class RecipesController < ApplicationController
 
   def get_user_email(id)
     user = User.find_by(id: id)
-    user.email
+    user.id
   end
   helper_method :get_user_email
 end

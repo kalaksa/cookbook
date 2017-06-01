@@ -4,7 +4,8 @@
     <% if comment.user_id.nil? %>
       <%= comment.author_name %>
     <% else %>
-      <%= get_user_email(comment.user_id) %>
+      <%= link_to comment.user.username, user_path(get_user_email(comment.user_id)) %>
+      
     <% end %>
   </h5>
   <p> Posted <%= distance_of_time_in_words(comment.recipe.created_at, comment.created_at) %> later </p>
