@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
-  has_many :comments
-  has_many :taggings
+  has_many :comments, dependent: :destroy
+  has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   belongs_to :user
 
