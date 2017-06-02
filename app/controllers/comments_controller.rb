@@ -13,11 +13,12 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     authorize! :destroy, @comment
     @comment = Comment.destroy(@comment)
-    flash.notice = "Comment Destroyed!"
+    flash.notice = 'Comment Destroyed!'
     redirect_to recipe_path(@comment.recipe)
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:author_name, :body)
   end

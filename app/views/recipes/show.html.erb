@@ -7,7 +7,9 @@
 </p>
 
 <p><%= @recipe.components %></p>
-<p><%= image_tag @recipe.image.url(:medium) %></p>
+<% if !@recipe.image_file_name.nil? %>
+  <p><%= image_tag @recipe.image.url(:medium) %></p>
+<% end %>
 <p><%= @recipe.body %></p>
 <p>Recipe by:
   <%= link_to @recipe.user.username, user_path(@recipe.user_id) %>
