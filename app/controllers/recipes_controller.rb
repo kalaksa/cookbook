@@ -1,13 +1,12 @@
 class RecipesController < ApplicationController
-  include RecipesHelper
   before_action :authenticate_user!, only: [:new, :create, :destroy, :update, :edit]
+  before_action set_recipe, only: [:show, :destroy, :edit, :update]
 
   def index
     @recipes = Recipe.all
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     @comment = Comment.new
     @comment.recipe_id = @recipe.id
   end
@@ -25,7 +24,6 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe = Recipe.find(params[:id])
     authorize! :destroy, @recipe
     @recipe = Recipe.destroy(@recipe)
     flash.notice = "Recipe '#{@recipe.title}' Destroyed!"
@@ -33,14 +31,22 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     authorize! :update, @recipe
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     @recipe.update(recipe_params)
     flash.notice = "Recipe '#{@recipe.title}' Updated!"
     redirect_to recipe_path(@recipe)
+  end
+
+  private
+
+  def recipe_params
+    params.require(:recipe).permit(:title, :components, :body, :tag_list, :image)
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:id])
   end
 end
