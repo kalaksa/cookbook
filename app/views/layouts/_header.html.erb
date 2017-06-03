@@ -1,14 +1,24 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
-    <%= link_to "cookbook", root_path, id: "logo" %>
+    <%= link_to "CookBook", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "New Recipe", new_recipe_path %></li>
         <% if !user_signed_in? %>
           <li><%= link_to "Log in", new_user_session_path %></li>
           <li><%= link_to "Sing up", new_user_registration_path %></li>
         <% else %>
-          <li><%= link_to("Log out", destroy_user_session_path, :method => :delete) %></li>
+          <li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.username %> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Edit account", edit_user_registration_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          </li>
         <% end %>
       </ul>
     </nav>

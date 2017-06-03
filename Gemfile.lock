@@ -269,9 +269,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autoprefixer-rails
   better_errors
   binding_of_caller
-  bootstrap-sass (= 3.3.6)
+  bootstrap-sass (~> 3.3.6)
   byebug
   cancan
   capybara

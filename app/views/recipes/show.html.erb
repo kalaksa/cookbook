@@ -1,28 +1,45 @@
-<h1><%= @recipe.title %></h1>
-<p>
-  Tags:
-  <% @recipe.tags.each do |tag| %>
-    <%= link_to tag.name, tag_path(tag) %>
-  <% end %>
-</p>
-
-<p><%= @recipe.components %></p>
-<% if !@recipe.image_file_name.nil? %>
-  <p><%= image_tag @recipe.image.url(:medium) %></p>
-<% end %>
-<p><%= @recipe.body %></p>
-<p>Recipe by:
-  <%= link_to @recipe.user.username, user_path(@recipe.user_id) %>
-</p>
-
-<%= link_to "<< Back to Recipes List", recipes_path %>
-<% if can? :destroy, @recipe %>
-  <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Really want to delete?"} %>
-<% end %>
-<% if can? :update, @recipe %>
-  <%= link_to "Edit", edit_recipe_path(@recipe) %>
-<% end %>
-
-<%= render partial: 'comments/form' %>
-<h3> Comments <%= @recipe.comments.size %></h3>
-<%= render partial: 'recipes/comment', collection: @recipe.comments %>
+<div id="recipe">
+  <h1><%= @recipe.title %></h1>
+  <p class="author">
+    Recipe by: <%= link_to @recipe.user.username, user_path(@recipe.user_id) %>
+  </p>
+  <p class="tags">
+    <% @recipe.tags.each do |tag| %>
+      <%= link_to tag.name, tag_path(tag) %>
+    <% end %>
+  </p>
+  <div class="row">
+    <div class="col-xs-3 components">
+      <h4>Components:</h4>
+      <ul>
+      <% @recipe.components.split("\n").each do |component| %>
+        <li><%= component.strip %></li>
+      <% end %>
+      </ul>
+    </div>
+    <div class="col-xs-9">
+      <div class="recipe">
+        <% if !@recipe.image_file_name.nil? %>
+          <div><%= image_tag @recipe.image.url(:original) %></div>
+        <% end %>
+        <% @recipe.body.split("\n").each do |paragraph| %>
+          <p><%= paragraph.strip %></p>
+        <% end %>
+      </div>
+      <div class="actions">
+        <%= link_to "<< Back to Recipes List", recipes_path, class: "btn btn-sm btn-default" %>
+        <% if can? :update, @recipe %>
+          <%= link_to "Edit", edit_recipe_path(@recipe), class: "btn btn-sm btn-primary" %>
+        <% end %>
+        <% if can? :destroy, @recipe %>
+          <%= link_to "Delete", recipe_path(@recipe), method: :delete, data: {confirm: "Really want to delete?"}, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </div>
+      <div class="comments">
+        <%= render partial: 'comments/form' %>
+        <h3> Comments <%= @recipe.comments.size %></h3>
+        <%= render partial: 'recipes/comment', collection: @recipe.comments %>
+      </div>
+    </div>
+  </div>
+</div>

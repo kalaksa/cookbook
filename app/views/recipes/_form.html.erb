@@ -1,33 +1,48 @@
-<%= form_for(@recipe, html: {multipart: true}) do |f| %>
-<ul>
-  <% @recipe.errors.full_messages.each do |error| %>
-  <li><%= error %></li>
-  <% end %>
-</ul>
-<p>
-  <%= f.label :title %><br />
-  <%= f.text_field :title %>
-</p>
-<p>
-  <%= f.label :tag_list %><br />
-  <%= f.text_field :tag_list %>
-</p>
-<p>
-  <%= f.label :components %><br />
-  <%= f.text_area :components %>
-</p>
-<p>
-  <%= f.label :body %><br />
-  <%= f.text_area :body %>
-</p>
-<p>
-  <% if @recipe.image.exists? %>
-      <%= image_tag @recipe.image.url %><br/>
-  <% end %>
-  <%= f.label :image, "Attach a New Image" %><br />
-  <%= f.file_field :image %>
-</p>
-<p>
-  <%= f.submit %>
-</p>
+<%= form_for(@recipe, html: {multipart: true, class: "form-horizontal"}) do |f| %>
+<fieldset>
+  <ul>
+    <% @recipe.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+  <div class="form-group">
+    <%= f.label :title, class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :title, class: "form-control", placeholder: "Name your recipe" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :tag_list, class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_field :tag_list, class: "form-control", placeholder: "E.g. strawberry, dinner, bread" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :components, class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_area :components, class: "form-control", placeholder: "Type in necessary components and seperate them with [enter] key" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :body, class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.text_area :body, class: "form-control", placeholder: "Your recipe" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label :image, "Attach a New Image", class: "col-lg-2 control-label" %>
+    <div class="col-lg-10">
+      <%= f.file_field :image, class: "form-control", placeholder: "Browse image..." %>
+      <% if @recipe.image.exists? %>
+        <%= image_tag @recipe.image.url, class: "image-preview" %>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-lg-10 col-lg-offset-2">
+      <%= f.submit "Create recipe", class: "btn btn-success" %>
+    </div>
+  </div>
+</fieldset>
 <% end %>

@@ -1,3 +1,79 @@
-// Place all the styles related to the recipes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#recipes {
+  .card {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+
+    .card-img-top {
+      width: 100%;
+      margin: 0;
+    }
+
+    .card-block {
+      padding: 12px;
+      text-align: center;
+    }
+
+    h4.card-title {
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+}
+
+#recipe {
+  h1 {
+    margin-bottom: 0.2em;
+  }
+  .tags {
+    overflow: hidden;
+    margin: 0 0 20px;
+
+    a {
+      display: inline-block;
+      padding: 4px 5px;
+      color: white;
+      font-size: 12px;
+      background-color: #aaaaaa;
+      margin: 0 4px 0 0;
+      float: left;
+
+      &:hover {
+        background-color: $brand-primary;
+        text-decoration: none;
+      }
+    }
+  }
+  .components {
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        font-size: 14px;
+        margin: 12px 0;
+        padding: 0 0 0 8px;
+        line-height: 16px;
+        border-left: 2px solid #dddddd;
+      }
+    }
+  }
+  .comments {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 2px solid #dddddd;
+  }
+}
+
+#recipe-form {
+  .image-preview {
+    margin-top: 6px;
+    max-width: 320px;
+    border: 2px solid #cccccc;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+}
