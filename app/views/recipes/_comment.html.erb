@@ -1,17 +1,20 @@
-<div>
-  <h5>
-    Comment by
-    <% if comment.user_id.nil? %>
-      <%= comment.author_name %>
-    <% else %>
-      <%= link_to comment.user.username, user_path(comment.user_id) %>
+<% if @comment.created_at.present? %>
+  <div>
+    <h5>
+      Comment by
+      <% if @comment.username %>
+        <%= link_to comment.username, user_path(comment.user_id) %>
+      <% else %>
+        <%= @comment.author_name %>
+      <% end %>
+    </h5>
+    <% if @comment.created_at.present? %>
+    <p> Posted <%= distance_of_time_in_words(@comment.recipe.created_at, @comment.created_at) %> later </p>
+    <p class="comment"> <%= @comment.body %> </p>
     <% end %>
-  </h5>
-  <p> Posted <%= distance_of_time_in_words(comment.recipe.created_at, comment.created_at) %> later </p>
-  <p class="comment"> <%= comment.body %> </p>
-  <br>
-  <% if can? :destroy, comment %>
-    <%= link_to "Delete", recipe_comment_path(comment.recipe, comment), method: :delete, data: {confirm: "Really want to delete?"} %>
-  <% end %>
-
-</div>
+    <br>
+    <% if can? :destroy, @comment %>
+      <%= link_to "Delete", recipe_comment_path(@comment.recipe, @comment), method: :delete, data: {confirm: "Really want to delete?"} %>
+    <% end %>
+  </div>
+<% end %>

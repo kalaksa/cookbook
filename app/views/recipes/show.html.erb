@@ -19,7 +19,7 @@
     </div>
     <div class="col-xs-9">
       <div class="recipe">
-        <% if !@recipe.image_file_name.nil? %>
+        <% if @recipe.image_file_name.present? %>
           <div><%= image_tag @recipe.image.url(:original) %></div>
         <% end %>
         <% @recipe.body.split("\n").each do |paragraph| %>
@@ -36,9 +36,11 @@
         <% end %>
       </div>
       <div class="comments">
-        <%= render partial: 'comments/form' %>
-        <h3> Comments <%= @recipe.comments.size %></h3>
-        <%= render partial: 'recipes/comment', collection: @recipe.comments %>
+        <%= render 'comments/form' %>
+        <% if @comment.created_at.present? %>
+          <h3> Comments <%= @recipe.comments.size %></h3>
+        <% end %>
+        <%= render 'recipes/comment', collection: @recipe.comments %>
       </div>
     </div>
   </div>
