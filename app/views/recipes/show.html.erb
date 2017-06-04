@@ -37,10 +37,10 @@
       </div>
       <div class="comments">
         <%= render 'comments/form' %>
-        <% if @comment.created_at.present? %>
           <h3> Comments <%= @recipe.comments.size %></h3>
-        <% end %>
-        <%= render 'recipes/comment', collection: @recipe.comments %>
+          <% @recipe.comments.each do |comment| %>
+            <%= render 'recipes/comment', comment: comment %>
+          <% end %>
       </div>
     </div>
   </div>
