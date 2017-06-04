@@ -1,24 +1,11 @@
 <% if user_signed_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <section class="user_info">
-        <h1>
-          <%= @user.username %>
-        </h1>
-      </section>
-    </aside>
+  <div id="user">
+    <h1 class="text-center"><%= @user.username %></h1>
+    <h4 class="text-center">
+      <%= @user.email %> | <%= @user.recipes.length %> recipes
+    </h4>
+    <%= render partial: 'recipes/list', locals: { recipes: @user.recipes } %>
   </div>
-
-  <%= @user.username %>, <%= @user.email %>
-  <p>Recipes: <br />
-  <% @user.recipes.each do |recipe| %>
-    <%= link_to recipe.title, recipe_path(recipe) %> <br />
-  <% end %>
-
-  <p> Created at: <%= @user.created_at %> </p>
-  <p> Updated at: <%= @user.updated_at %> </p>
-
-  <p> Time: <%= Time.now %> </p>
 <% else %>
   <%controller.redirect_to root_path %>
 <% end %>

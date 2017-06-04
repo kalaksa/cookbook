@@ -1,0 +1,18 @@
+<div class="recipes-list">
+  <div class="row">
+    <% recipes.each do |recipe| %>
+      <div class="col-xs-4">
+        <div class="card">
+          <%= image_tag recipe.image.url(:medium), alt: recipe.title, class: "card-img-top" %>
+          <div class="card-block">
+            <h4 class="card-title"><%= recipe.title %></h4>
+            <%= link_to "Zobacz", recipe_path(recipe), class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <p class="pull-right">
+    <%= link_to "Scroll to top", "#" %>
+  </p>
+</div>

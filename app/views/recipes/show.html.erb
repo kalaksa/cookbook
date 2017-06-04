@@ -20,7 +20,7 @@
     <div class="col-xs-9">
       <div class="recipe">
         <% if @recipe.image_file_name.present? %>
-          <div><%= image_tag @recipe.image.url(:original) %></div>
+          <div class="image"><%= image_tag @recipe.image.url(:original) %></div>
         <% end %>
         <% @recipe.body.split("\n").each do |paragraph| %>
           <p><%= paragraph.strip %></p>
@@ -37,10 +37,7 @@
       </div>
       <div class="comments">
         <%= render 'comments/form' %>
-          <h3> Comments <%= @recipe.comments.size %></h3>
-          <% @recipe.comments.each do |comment| %>
-            <%= render 'recipes/comment', comment: comment %>
-          <% end %>
+        <%= render partial: 'comments/list', locals: { comments: @recipe.comments } %>
       </div>
     </div>
   </div>

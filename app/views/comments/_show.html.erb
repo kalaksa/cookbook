@@ -1,0 +1,18 @@
+<div class="comment">
+  <h5>
+    <% if comment.username %>
+      <%= link_to comment.username, user_path(comment.user_id) %>
+    <% else %>
+      <%= comment.author_name %>
+    <% end %>
+
+    <small>
+      posted <%= distance_of_time_in_words(Time.now, comment.created_at) %> ago
+      <% if can? :destroy, comment %>
+        | <%= link_to "delete", recipe_comment_path(comment.recipe, comment), method: :delete, data: {confirm: "Really want to delete?"} %>
+      <% end %>
+    </small>
+  </h5>
+  <p class="text"><%= comment.body %></p>
+
+</div>

@@ -1,0 +1,4 @@
+<h3><%= comments.size %> comments</h3>
+<% comments.each do |comment| %>
+  <%= render 'comments/show', comment: comment %>
+<% end %>
