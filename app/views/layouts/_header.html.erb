@@ -1,6 +1,8 @@
 <header class="navbar navbar-fixed-top navbar-default">
   <div class="container">
-    <%= link_to "CookBook", root_path, id: "logo" %>
+    <%= link_to root_path, id: "logo" do %>
+      Food<strong>Lovers</strong>
+    <% end %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
         <li><%= link_to "Home", root_path %></li>
