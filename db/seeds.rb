@@ -1,7 +1,7 @@
 User.create!([
   {email: "cookbookabgaro@gmail.com", encrypted_password: "$2a$11$Z6DyHT9TVqFMFLeA209OGuF.VwVBI8RJSOMEbhjL7HOIPDzSPgLA.", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2017-06-02 17:44:54", last_sign_in_at: "2017-06-02 17:44:54", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "wxy6BJBVf4vH4GwwXWNo", confirmed_at: "2017-06-02 17:30:32", confirmation_sent_at: "2017-06-02 17:29:41", unconfirmed_email: nil, username: "admin", admin: false},
-  {email: "a.zachariasiewicz@gmail.com", encrypted_password: "$2a$11$6rQXWmbSCO.8yP98.p6BNO4VShNPu95bKMDRkTkbZHDoOzav8QRNS", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2017-06-02 17:49:02", last_sign_in_at: "2017-06-02 17:49:02", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "vWMA64sxmUBGf3fz_bkA", confirmed_at: "2017-06-02 17:31:12", confirmation_sent_at: "2017-06-02 17:30:58", unconfirmed_email: nil, username: "kalaksa", admin: false},
-  {email: "karolkochan@gmail.com", encrypted_password: "$2a$11$FT8E/0k85vjAaj1V7PMCzuwab8iA.avYUel/K4WJIm1c/wkF88puq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2017-06-02 17:54:25", sign_in_count: 3, current_sign_in_at: "2017-06-02 17:54:25", last_sign_in_at: "2017-06-02 17:33:48", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "fmskRodSfzzSpRkde2DT", confirmed_at: "2017-06-02 17:32:45", confirmation_sent_at: "2017-06-02 17:31:32", unconfirmed_email: nil, username: "karolkochan", admin: false}
+  {email: "a.zachariasiewicz@gmail.com", encrypted_password: "$2a$11$6rQXWmbSCO.8yP98.p6BNO4VShNPu95bKMDRkTkbZHDoOzav8QRNS", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 8, current_sign_in_at: "2017-06-04 10:18:47", last_sign_in_at: "2017-06-03 23:17:12", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "vWMA64sxmUBGf3fz_bkA", confirmed_at: "2017-06-02 17:31:12", confirmation_sent_at: "2017-06-02 17:30:58", unconfirmed_email: nil, username: "kalaksa", admin: false},
+  {email: "karolkochan@gmail.com", encrypted_password: "$2a$11$FT8E/0k85vjAaj1V7PMCzuwab8iA.avYUel/K4WJIm1c/wkF88puq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2017-06-04 11:16:11", sign_in_count: 6, current_sign_in_at: "2017-06-04 11:16:11", last_sign_in_at: "2017-06-03 12:37:21", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "fmskRodSfzzSpRkde2DT", confirmed_at: "2017-06-02 17:32:45", confirmation_sent_at: "2017-06-02 17:31:32", unconfirmed_email: nil, username: "karolkochan", admin: false}
 ])
 Comment.create!([
   {author_name: nil, body: "Mmmmmm pychota! Ja gorąco polecam z truskawkami!", recipe_id: 3, user_id: 2},
@@ -9,7 +9,11 @@ Comment.create!([
   {author_name: nil, body: "@kalaksa Dzięki, następnym razem jak będę piekł, muszę spróbować wcześniej wyjąć z piekarnika:)", recipe_id: 1, user_id: 3},
   {author_name: nil, body: "Ekstra, świetnie komponuje się z lodami truskawkowymi! ", recipe_id: 5, user_id: 3},
   {author_name: nil, body: "Yummmy!", recipe_id: 4, user_id: 3},
-  {author_name: nil, body: "Kudos!", recipe_id: 3, user_id: 3}
+  {author_name: nil, body: "Kudos!", recipe_id: 3, user_id: 3},
+  {author_name: "gość", body: "pyszna! polecam!", recipe_id: 1, user_id: nil},
+  {author_name: nil, body: "pyszne!", recipe_id: 5, user_id: 2},
+  {author_name: "stanley", body: "Super przepis!", recipe_id: 1, user_id: nil},
+  {author_name: nil, body: "Perfecto!", recipe_id: 2, user_id: 3}
 ])
 Recipe.create!([
   {title: "Focaccia z oliwkami", body: "Do połowy ciepłej wody dodać pokruszone drożdże, 1 łyżeczkę cukru i wymieszać. Odstawić na około 10 - 15 minut do czasu aż drożdże utworzą pianę na powierzchni (gdyby woda się ochłodziła po dodaniu drożdży, można naczynie z drożdżami wstawić w gorącą wodę i w ten sposób podgrzać rozczyn. Drożdże muszą mieć ciepłą wodę do wyrośnięcia, ale nie gorącą).\r\nMąkę przesiać do dużej miski, dodać rozczyn z drożdży i resztę ciepłej wody (w razie konieczności należy ją podgrzać), wymieszać łyżką, dodać sól i całą oliwę (1/4 szklanki + 2 łyżki). Ciasto wyrabiać dokładnie przez około 10 - 15 minut (ręką lub mikserem) do czasu aż będzie miękkie, elastyczne i gładkie (nie powinno się też za bardzo kleić). Uformować kulę naoliwionymi dłońmi i przełożyć ją do dużej miski, odstawić w ciepłe miejsce na 45 minut do wyrośnięcia (ciasto powinno dwukrotnie powiększyć swoją objętość).\r\nW miseczce wymieszać posiekane oliwki, oliwę, tarty ser, kapry, 1 łyżkę posiekanych listków rozmarynu (opcjonalnie).\r\nUderzyć pięścią w wyrośnięte ciasto, chwilę powyrabiać w misce, następnie wyłożyć na posmarowany oliwą arkusz papieru do pieczenia i palcami rozpłaszczyć na placek około 30 - 40 cm. Wyłożyć nadzienie i złożyć ciasto na 3 części: najpierw jeden krótszy bok do środka placka, później drugi bok założyć na pierwszy, w ten sposób powstaną 3 warstwy ciasta z nadzieniem w środku. Zlepić brzegi i przełożyć razem z papierem do większej formy o wymiarach około 35 - 40 cm. Rozpłaszczyć ciasto palcami na większy placek. Na wierzch położyć listki rozmarynu (opcjonalnie) i odstawić w ciepłe miejsce do wyrośnięcia na około 45 minut.\r\nPiekarnik nagrzać do 200 stopni C, wstawić blaszkę z wyrośniętym ciastem do środka piekarnika i piec przez 35 minut. Po upieczeniu ostudzić, następnie pokroić na kawałki. Maczać z oliwie z dodatkiem soli, pieprzu, suszonych ziół.", image_file_name: "Focaccia-z-oliwkami-i-serem3.jpg", image_content_type: "image/jpeg", image_file_size: 32339, image_updated_at: "2017-06-02 17:37:03", components: "30 g świeżych drożdży (w temperaturze pokojowej)\r\n300 g ciepłej wody\r\n1 łyżeczka cukru\r\n500 g mąki pszennej\r\n2 łyżeczki soli morskiej\r\n1/4 szklanki + 2 łyżki oliwy extra vergine\r\n1 szklanka zielonych oliwek, posiekanych\r\n2 łyżki oliwy extra vergine\r\n1 szklanka tartego sera np. pecorino, parmezanu, cheddara\r\n2 łyżki kaparów (opcjonalnie)\r\n1 gałązka świeżego rozmarynu (opcjonalnie)", user_id: 3},
@@ -34,7 +38,8 @@ Tag.create!([
   {name: "milkshake"},
   {name: "truskawki"},
   {name: "lody"},
-  {name: "deser"}
+  {name: "deser"},
+  {name: "ww"}
 ])
 Tagging.create!([
   {tag_id: 1, recipe_id: 1},
