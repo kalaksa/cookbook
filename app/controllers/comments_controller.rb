@@ -5,8 +5,12 @@ class CommentsController < ApplicationController
     if user_signed_in?
       @comment.user_id = current_user.id
     end
-    @comment.save
-    redirect_to recipe_path(@comment.recipe)
+    if @comment.save
+      redirect_to recipe_path(@comment.recipe)
+    else
+      flash.alert = "Comment can't be blank!"
+      redirect_to recipe_path(@comment.recipe)
+    end
   end
 
   def destroy

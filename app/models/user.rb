@@ -7,5 +7,5 @@ class User < ApplicationRecord
   has_many :recipes, dependent: :destroy
   has_many :comments, dependent: :destroy
   attr_accessor :name
-  validates :username, presence: true
+  validates :username, length: { minimum: 2 }, presence: true, uniqueness: { message: "should be unique" }
 end

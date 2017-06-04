@@ -18,9 +18,13 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
-    @recipe.save
-    flash.notice = "Recipe '#{@recipe.title}' Created!"
-    redirect_to recipe_path(@recipe)
+    if @recipe.save
+      flash.notice = "Recipe '#{@recipe.title}' Created!"
+      redirect_to recipes_path(@recipe)
+    else
+      flash.alert = "Fill in all fields!"
+      render :new
+    end
   end
 
   def destroy
@@ -35,9 +39,13 @@ class RecipesController < ApplicationController
   end
 
   def update
-    @recipe.update(recipe_params)
-    flash.notice = "Recipe '#{@recipe.title}' Updated!"
-    redirect_to recipe_path(@recipe)
+    if @recipe.update(recipe_params)
+      flash.notice = "Recipe '#{@recipe.title}' Updated!"
+      redirect_to recipe_path(@recipe)
+    else
+      flash.alert = "Fill in all fields!"
+      render :edit
+    end
   end
 
   private
