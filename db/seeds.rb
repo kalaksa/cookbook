@@ -1,8 +1,10 @@
-User.create!([
+u = User.new([
   {email: "cookbookabgaro@gmail.com", encrypted_password: "$2a$11$Z6DyHT9TVqFMFLeA209OGuF.VwVBI8RJSOMEbhjL7HOIPDzSPgLA.", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 1, current_sign_in_at: "2017-06-02 17:44:54", last_sign_in_at: "2017-06-02 17:44:54", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "wxy6BJBVf4vH4GwwXWNo", confirmed_at: "2017-06-02 17:30:32", confirmation_sent_at: "2017-06-02 17:29:41", unconfirmed_email: nil, username: "admin", admin: false},
   {email: "a.zachariasiewicz@gmail.com", encrypted_password: "$2a$11$6rQXWmbSCO.8yP98.p6BNO4VShNPu95bKMDRkTkbZHDoOzav8QRNS", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: nil, sign_in_count: 8, current_sign_in_at: "2017-06-04 10:18:47", last_sign_in_at: "2017-06-03 23:17:12", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "vWMA64sxmUBGf3fz_bkA", confirmed_at: "2017-06-02 17:31:12", confirmation_sent_at: "2017-06-02 17:30:58", unconfirmed_email: nil, username: "kalaksa", admin: false},
   {email: "karolkochan@gmail.com", encrypted_password: "$2a$11$FT8E/0k85vjAaj1V7PMCzuwab8iA.avYUel/K4WJIm1c/wkF88puq", reset_password_token: nil, reset_password_sent_at: nil, remember_created_at: "2017-06-04 11:16:11", sign_in_count: 6, current_sign_in_at: "2017-06-04 11:16:11", last_sign_in_at: "2017-06-03 12:37:21", current_sign_in_ip: "127.0.0.1", last_sign_in_ip: "127.0.0.1", confirmation_token: "fmskRodSfzzSpRkde2DT", confirmed_at: "2017-06-02 17:32:45", confirmation_sent_at: "2017-06-02 17:31:32", unconfirmed_email: nil, username: "karolkochan", admin: false}
 ])
+u.save!(validate: false)
+
 Comment.create!([
   {author_name: nil, body: "Mmmmmm pychota! Ja gorąco polecam z truskawkami!", recipe_id: 3, user_id: 2},
   {author_name: nil, body: "Najlepsza focaccia ever! Minimalnie bym zmodyfikowała przepis co do czasu pieczenia - u mnie wymagało to tylko 30min, później zbyt się wysuszała.", recipe_id: 1, user_id: 2},
