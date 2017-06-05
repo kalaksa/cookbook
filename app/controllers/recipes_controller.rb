@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
     @recipe = current_user.recipes.build(recipe_params)
     if @recipe.save
       flash.notice = "Recipe '#{@recipe.title}' Created!"
-      redirect_to recipes_path(@recipe)
+      redirect_to recipe_path(@recipe)
     else
       flash.alert = "Fill in all fields!"
       render :new
