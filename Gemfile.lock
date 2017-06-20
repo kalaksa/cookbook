@@ -103,6 +103,7 @@ GEM
     guard-minitest (2.4.4)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    hashie (3.5.5)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -139,6 +140,16 @@ GEM
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
+    oauth (0.5.3)
+    omniauth (1.6.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
+    omniauth-oauth (1.1.0)
+      oauth
+      omniauth (~> 1.0)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
     orm_adapter (0.5.0)
     paperclip (5.1.0)
       activemodel (>= 4.2.0)
@@ -284,6 +295,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   minitest-reporters (= 1.1.9)
+  omniauth-twitter
   paperclip
   pg (= 0.18.4)
   pry
