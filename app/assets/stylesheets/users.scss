@@ -7,3 +7,37 @@
     margin-bottom: 2.8em;
   }
 }
+
+$facebookColor: #3b5998;
+$twitterColor: #1da1f2;
+#new_user {
+  .social-login {
+    height: 45px;
+
+    &.facebook {
+      background: $facebookColor;
+      border-color: $facebookColor;
+
+      &:hover {
+        background: lighten($facebookColor, 10%);
+      }
+    }
+
+    &.twitter {
+      background: $twitterColor;
+      border-color: $twitterColor;
+
+      &:hover {
+        background: lighten($twitterColor, 10%);
+      }
+    }
+
+    span {
+      font-size: 22px;
+      line-height: 22px;
+      margin: 0 -5px -2px;
+      height: 23px;
+      display: block;
+    }
+  }
+}

@@ -41,6 +41,12 @@
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
         <%= f.submit "Sign up", class: "btn btn-success" %>
+        <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-success social-login facebook" do %>
+          <span class="socicon-facebook inline-socicon"></span>
+        <% end %>
+        <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-success social-login twitter" do %>
+          <span class="socicon-twitter inline-socicon"></span>
+        <% end %>
       </div>
     </div>
     <br />
