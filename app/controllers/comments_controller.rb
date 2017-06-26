@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
+  before_action :set_recipe, only: [:create]
   def create
-    @comment = Comment.new(comment_params)
-    @comment.recipe_id = params[:recipe_id]
+    @comment = @recipe.comments.build(comment_params)
     if user_signed_in?
       @comment.user_id = current_user.id
     end
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     authorize! :destroy, @comment
-    @comment = Comment.destroy(@comment)
+    @comment.destroy
     flash.notice = 'Comment Destroyed!'
     redirect_to recipe_path(@comment.recipe)
   end
@@ -25,5 +25,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:author_name, :body)
+  end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
   end
 end

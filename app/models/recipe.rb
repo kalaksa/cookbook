@@ -9,9 +9,7 @@ class Recipe < ApplicationRecord
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
   def tag_list
-    self.tags.collect do |tag|
-      tag.name
-    end.join(", ")
+    self.tags.map(&:name).join(", ")
   end
 
   def tag_list=(tags_string)
