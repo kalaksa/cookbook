@@ -3,7 +3,9 @@
     <% recipes.each do |recipe| %>
       <div class="col-xs-4">
         <div class="card">
-          <%= image_tag recipe.image.url(:medium), alt: recipe.title, class: "card-img-top" %>
+          <% if recipe.image.present? %>
+            <%= image_tag recipe.image.url, alt: recipe.title, class: "card-img-top" %>
+          <% end %>
           <div class="card-block">
             <h4 class="card-title"><%= recipe.title %></h4>
             <%= link_to "Zobacz", recipe_path(recipe), class: "btn btn-success" %>

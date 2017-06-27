@@ -19,8 +19,8 @@
     </div>
     <div class="col-xs-9">
       <div class="recipe">
-        <% if @recipe.image_file_name.present? %>
-          <div class="image"><%= image_tag @recipe.image.url(:original) %></div>
+        <% if @recipe.image.present? %>
+          <div class="image"><%= image_tag @recipe.image.url %></div>
         <% end %>
         <% @recipe.body.split("\n").each do |paragraph| %>
           <p><%= paragraph.strip %></p>
