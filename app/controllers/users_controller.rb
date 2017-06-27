@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:show]
   def show
     @user = User.find(params[:id])
-    authenticate_user!
-    # authorize! :show, @user
   end
 
   def index
