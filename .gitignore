@@ -1,4 +1,6 @@
 /config/local_env.yml
+/log
+/tmp
 
 # Ignore bundler config.
 /.bundle
@@ -8,8 +10,6 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
 !/log/.keep
 !/tmp/.keep
 
