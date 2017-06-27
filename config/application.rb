@@ -21,8 +21,8 @@ module Cookbook
       :address  => 'smtp.gmail.com',
       :domain => 'mail.google.com',
       :port => 587,
-      :user_name => 'cookbookabgaro@gmail.com',
-      :password => 'abgaro1234',
+      :user_name => Rails.application.secrets.MAILER_USERNAME,
+      :password => Rails.application.secrets.MAILER_PASSWORD,
       :authentication => 'login',
       :enable_starttls_auto => true
     }
