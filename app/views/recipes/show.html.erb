@@ -20,7 +20,7 @@
     <div class="col-xs-9">
       <div class="recipe">
         <% if @recipe.image.present? %>
-          <div class="image"><%= image_tag @recipe.image.url %></div>
+          <div class="image"><%= image_tag @recipe.image.url(:standard) %></div>
         <% end %>
         <% @recipe.body.split("\n").each do |paragraph| %>
           <p><%= paragraph.strip %></p>

@@ -34,7 +34,7 @@
     <div class="col-lg-10">
       <%= f.file_field :image, class: "form-control", placeholder: "Browse image..." %>
       <% if @recipe.image.present? %>
-        <%= image_tag @recipe.image.url, class: "image-preview" %>
+        <%= image_tag @recipe.image.url(:thumbnail), class: "image-preview" %>
       <% end %>
     </div>
   </div>

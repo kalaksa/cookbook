@@ -4,7 +4,7 @@
       <div class="col-xs-4">
         <div class="card">
           <% if recipe.image.present? %>
-            <%= image_tag recipe.image.url, alt: recipe.title, class: "card-img-top" %>
+            <%= image_tag recipe.image.url(:thumbnail), alt: recipe.title, class: "card-img-top" %>
           <% end %>
           <div class="card-block">
             <h4 class="card-title"><%= recipe.title %></h4>
