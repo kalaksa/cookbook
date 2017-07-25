@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:user) { create(:user) }
 
-  describe 'SHOW users' do
+  describe 'GET users' do
     before do
       allow(controller).to receive(:user_signed_in?).and_return(true)
       allow(controller).to receive(:current_user).and_return(user)

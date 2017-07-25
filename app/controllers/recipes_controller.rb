@@ -35,7 +35,6 @@ class RecipesController < ApplicationController
 
   def edit
     authorize! :update, @recipe
-    redirect_to edit_recipe_path(@recipe)
   end
 
   def update
