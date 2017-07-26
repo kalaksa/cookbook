@@ -6,109 +6,129 @@ describe RecipesController do
   context 'user is not signed in' do
     describe 'GET index' do
       it 'exposes all recipes' do
-        recipe = create(:recipe)
         get :index
-        expect(assigns(:recipes)).to eq([recipe])
+        expect(response).to be_success
+        expect(response).to render_template(:index)
       end
     end
 
     describe 'GET show' do
+      let(:recipe) { build(:recipe) }
+      before {
+        expect(Recipe).to receive(:find).with('1').and_return(recipe)
+      }
       it 'exposes the requested book' do
-        recipe = create(:recipe)
-        get :show, id: recipe.to_param
-        expect(assigns(:recipe)).to eq(recipe)
+        get :show, params: { id: 1 }
+        expect(response).to be_success
+        expect(response).to render_template(:show)
       end
     end
 
     describe 'GET new' do
       it 'redirects user to the login page' do
         get :new
+        expect(response).not_to be_success
         expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
       end
     end
 
     describe 'POST create' do
       it 'redirects user to the login page' do
         post :create, recipe: valid_attributes
+        expect(response).not_to be_success
         expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
       end
     end
 
     describe 'GET edit' do
+      let(:recipe) { build(:recipe) }
+      before {
+        expect(Recipe).not_to receive(:find).with('1')
+      }
       it 'redirects user to the login page' do
-        recipe = create(:recipe)
-        get :edit, id: recipe.to_param
+        get :edit, params: { id: 1 }
+        expect(response).not_to be_success
         expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
       end
     end
 
     describe 'PUT update' do
+      let(:recipe) { build(:recipe) }
+      before {
+        expect(Recipe).not_to receive(:find).with('1')
+      }
       it 'redirects user to the login page' do
-        recipe = create(:recipe)
-        put :update, id: recipe.to_param, recipe: valid_attributes
+        put :update, params: { id: 1 }, recipe: valid_attributes
+        expect(response).not_to be_success
         expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
       end
     end
 
     describe 'DELETE destroy' do
+      let(:recipe) { build(:recipe) }
+      before {
+        expect(Recipe).not_to receive(:find).with('1')
+      }
       it 'redirect user to the login page' do
-        recipe = create(:recipe)
-        delete :destroy, id: recipe.to_param
+        delete :destroy, params: { id: 1 }
+        expect(response).not_to be_success
         expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:alert]).to eq('You need to sign in or sign up before continuing.')
       end
     end
   end
 
   context 'user is signed in' do
-
+    login_user
     before :each do
-      user = FactoryGirl.create :user
-      sign_in user
       allow(controller).to receive(:user_signed_in?).and_return(true)
-      allow(controller).to receive(:current_user).and_return(user)
+      allow(controller).to receive(:current_user).and_return(subject.current_user)
       allow(controller.current_user).to receive(:admin?).and_return(false)
-      allow(controller).to receive(:authenticate_user!).and_return(user)
+      allow(controller).to receive(:authenticate_user!).and_return(subject.current_user)
     end
-
-    # before do
-    #   allow(controller).to receive(:user_signed_in?).and_return(true)
-      # allow(controller).to receive(:current_user).and_return(user)
-      # allow(controller.current_user).to receive(:admin?).and_return(false)
-      # allow(controller).to receive(:authenticate_user!).and_return(user)
-    # end
 
     context 'user is not admin' do
       describe 'GET new' do
-        # login_user
-        it 'assigns current user to the new recipe' do
+        it 'render new template with success response' do
           get :new
-          new_recipe = assigns(:recipe)
-          expect(response).not_to redirect_to(new_user_session_path)
-          expect(new_recipe.user_id).to eq(controller.current_user.id)
+          expect(response).to be_success
+          expect(response).to render_template(:new)
         end
       end
 
       describe 'POST create' do
         it 'redirects user to the recipe page' do
           post :create, recipe: valid_attributes
-          new_recipe = assigns(:recipe)
-          expect(response).to redirect_to(recipe_path(new_recipe))
-          expect(flash[:notice]).to eq("Recipe '#{new_recipe.title}' Created!")
+          expect(response.status).to eq(302)
+          expect(response).to redirect_to(recipe_path(subject.current_user.recipes.first))
+          expect(flash[:notice]).to eq("Recipe '#{subject.current_user.recipes.first.title}' Created!")
         end
       end
 
       describe 'GET edit' do
-        it 'let user edit his recipe' do
-          recipe = create(:recipe, user: controller.current_user)
-          get :edit, id: recipe.to_param
-          expect(response).not_to redirect_to(new_user_session_path)
-          expect(assigns(:recipe).user_id).to eq(controller.current_user.id)
+        let(:recipe) { build(:recipe) }
+        let(:other_user) { create(:user) }
+        let(:recipe_other_user) { create(:recipe, user: other_user) }
+
+        before do |example|
+          unless example.metadata[:skip_before]
+            expect(Recipe).to receive(:find).with('1').and_return(recipe)
+          end
         end
 
-        it 'prevent user from edit other user recipe' do
-          other_user = FactoryGirl.create :user
-          recipe = create(:recipe, user: other_user)
-          get :edit, id: recipe.to_param
+        it 'let user edit his recipe' do
+          get :edit, params: { id: recipe.id }
+          expect(response).to be_success
+          expect(response).to render_template(:edit)
+        end
+
+        it 'prevent user from edit other user recipe', skip_before: true do
+          # binding.pry
+          get :edit, params: { id: other_user.recipes.first.id }
           expect(response).to redirect_to(root_path)
         end
       end
@@ -142,9 +162,6 @@ describe RecipesController do
       before do
         allow(controller.current_user).to receive(:admin?).and_return(true)
       end
-
-
     end
   end
-
 end
