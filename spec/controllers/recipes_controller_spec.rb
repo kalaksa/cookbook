@@ -110,7 +110,7 @@ describe RecipesController do
       end
 
       describe 'GET edit' do
-        let(:recipe) { build(:recipe) }
+        let(:recipe) { build(:recipe, user: subject.current_user) }
         let(:other_user) { create(:user) }
         let(:recipe_other_user) { create(:recipe, user: other_user) }
 
@@ -121,14 +121,13 @@ describe RecipesController do
         end
 
         it 'let user edit his recipe' do
-          get :edit, params: { id: recipe.id }
+          get :edit, params: { id: 1 }
           expect(response).to be_success
           expect(response).to render_template(:edit)
         end
 
         it 'prevent user from edit other user recipe', skip_before: true do
-          # binding.pry
-          get :edit, params: { id: other_user.recipes.first.id }
+          get :edit, params: { id: recipe_other_user.id }
           expect(response).to redirect_to(root_path)
         end
       end
