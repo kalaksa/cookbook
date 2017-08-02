@@ -20,7 +20,7 @@ module Cookbook
     ActionMailer::Base.smtp_settings = {
       :address  => 'smtp.gmail.com',
       :domain => 'mail.google.com',
-      :port => 587,
+      :port => 465,
       :user_name => Rails.application.secrets.MAILER_USERNAME,
       :password => Rails.application.secrets.MAILER_PASSWORD,
       :authentication => 'login',
