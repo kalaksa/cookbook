@@ -24,7 +24,7 @@ module Cookbook
       :user_name => Rails.application.secrets.MAILER_USERNAME,
       :password => Rails.application.secrets.MAILER_PASSWORD,
       :authentication => 'login',
-      :enable_starttls_auto => true
+      :enable_starttls_auto => false
     }
   end
 end
