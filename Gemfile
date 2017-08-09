@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+# Authentication solution for Rails
 gem 'devise', '~> 4.3'
 gem 'cancan'
 # Use Capistrano for deployment
@@ -41,6 +42,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'carrierwave'
 gem 'cloudinary'
+# A library for generating fake data
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +51,8 @@ group :development, :test do
   gem 'sqlite3', '~> 1.3.11'
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers', '~> 3.1', require: false
 end
 
 group :development do
@@ -74,6 +79,8 @@ group :test do
   gem 'minitest-reporters',       '1.1.9'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :production do

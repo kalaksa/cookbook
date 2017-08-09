@@ -6,9 +6,6 @@ class Recipe < ApplicationRecord
   validates :title, :components, :body, presence: true
   mount_uploader :image, RecipeImageUploader
 
-  # has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }
-  # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
-
   def tag_list
     self.tags.map(&:name).join(", ")
   end

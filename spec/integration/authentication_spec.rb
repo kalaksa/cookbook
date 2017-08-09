@@ -1,10 +1,10 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'authentication' do
 
   before(:all) do
     User.delete_all
-    User.create!(email: 'test0@test.com', password: '!123456t', password_confirmation: '!123456t')
+    User.create!(username: 'name', email: 'test0@test.com', password: '!123456t', password_confirmation: '!123456t')
   end
 
   it 'user should not be able to log in without confirmation' do
